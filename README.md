@@ -1,8 +1,8 @@
-# Everything IoT
+# 
 
-# :shell: 0x1E - Search Algorithms :shell:
+# :bulb: Everything IoT :bulb:
 
-In this project I will be going over search algorithms and implementing them in C. Primarily Linear search and Binary search. I will also be adding files describing their Big-O space complexity and time complexity.
+In this project I will be * and implementing *. Primarily * and *. I will also be *.
 
 ## :running: Getting Started
 
@@ -22,12 +22,6 @@ In this project I will be going over search algorithms and implementing them in 
 ```
 $ sudo apt-get install git
 ```
-
-Compile with:
-```
-$ gcc -Wall -pedantic -Werror -Wextra X-main.c X-problem.c -o X-output
-```
-Where X is the problem number for files that are relevant.
 
 ## :blue_book: Author
 * **Jean-Paul KYOKYA** - [@kal-kyokya](https://github.com/kal-kyokya)
