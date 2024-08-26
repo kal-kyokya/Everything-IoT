@@ -6,7 +6,7 @@ In this project I will be * and implementing *. Primarily * and *. I will also b
 
 ## :running: Getting Started
 
-* [Ubuntu 14.04 LTS](http://releases.ubuntu.com/14.04/) - Operating system reqd.
+* [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/) - Operating system.
 
 * [GCC 4.8.4](https://gcc.gnu.org/gcc-4.8/) - Compiler used
 
