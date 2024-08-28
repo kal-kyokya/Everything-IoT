@@ -1,0 +1,15 @@
+{%extends 'base_template.html'%}
+
+{%block title%} Home page EverythingIoT {%endblock%}
+
+{%block navbarElement1%}
+<a class="nav-link" href="sign-in">Sign in</a>
+{%endblock%}
+
+{%block navbarElement2%}
+<a class="nav-link" href="sign-up">Sign up</a>
+{%endblock%}
+
+{%block content}
+<h3>Signing in</h3>
+{%endblock%}
