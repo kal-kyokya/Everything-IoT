@@ -1,0 +1,91 @@
+{%extends 'base_template.html'%}
+
+{%block title %}Sign up{%endblock%}
+
+{%block content%}
+<h3 align="center"> Sign up </h3>
+
+<form method="POST">
+  <div>
+  <label class="form-label" for="email">Email</label>
+  <input class="form-control form-control-sm" name="email"
+	 type="email"
+	 placeholder="Enter email"
+	 id="email"
+	 aria-label="email">
+  <label class="form-label" for="firstName">First name</label>
+  <input class="form-control form-control-sm" name="firstName"
+	 type="text"
+	 placeholder="Enter your first name"
+	 id="firstName"
+	 aria-label="firstName">
+  <label class="form-label" for="lastName">Last name</label>
+  <input class="form-control form-control-sm" name="lastName"
+	 type="text"
+	 placeholder="Enter your last name"
+	 id="lastName"
+	 aria-label="lastName">
+  <label class="form-label" for="userName">Username</label>
+  <input class="form-control form-control-sm" name="userName"
+	 type="text"
+	 placeholder="Enter a username"
+	 id="userName"
+	 aria-label="userName">
+  <label class="form-label" for="phoneNumber">Phone number</label>
+  <input class="form-control form-control-sm" name="phoneNumber"
+	 type="text"
+	 placeholder="Enter your phone number"
+	 id="phoneNumber"
+	 aria-label="phoneNumber">
+  <label class="form-label" for="birthday">Birthday</label>
+  <input class="form-control form-control-sm" name="birthday"
+	 type="date"
+	 id="birthday"
+	 aria-label="birthday">
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="inputPassword1" class="col-form-label">Password</label>
+    </div>
+    <div class="col-auto">
+      <input type="password"
+	     id="inputPassword1"
+	     name="inputPassword1"
+	     class="form-control form-control-sm"
+	     aria-describedby="passwordHelpInline1">
+    </div>
+    <div class="col-auto">
+      <span id="passwordHelpInline1" class="form-text">
+	Must be 8-20 characters long.
+      </span>
+    </div>
+  </div>
+  
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="inputPassword2" class="col-form-label">Password</label>
+    </div>
+    <div class="col-auto">
+      <input type="password"
+	     id="inputPassword2"
+	     name="inputPassword2"
+	     class="form-control form-control-sm"
+	     aria-describedby="passwordHelpInline2">
+    </div>
+    <div class="col-auto">
+      <span id="passwordHelpInline2" class="form-text">
+	Must match previous password input.
+      </span>
+    </div>
+  </div>
+
+  <br />
+  <div align="center">
+    <button class="btn btn-dark" name="submit"
+	    type="submit">Sign up</button>
+  </div>
+  </div>
+</form>
+
+<br />
+
+{%endblock%}

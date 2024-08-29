@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div class="container-fluid">
 	<a class="navbar-brand" href="/">EverythingIoT</a>
 
@@ -23,7 +23,8 @@
 		data-bs-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent"
 		aria-expanded="false"
-		aria-label="Toggle navigation">
+		aria-label="Toggle navigation"
+		>
 	  <span class="navbar-toggler-icon"></span>
 	</button>
 
@@ -34,18 +35,14 @@
 		 href="/services"
 		 role="button"
 		 data-bs-toggle="dropdown"
-		 aria-expanded="false">Services</a>
+		 aria-expanded="false"
+		 >Services</a>
 
               <ul class="dropdown-menu">
-		<li><a class="dropdown-item" href="/services">Available</a></li>
-		<li><hr class="dropdown-divider"></li>
 		<li><a class="dropdown-item" href="/services">Remote Control</a></li>
 		<li><a class="dropdown-item" href="/services">Smart Farming</a></li>
 		<li><a class="dropdown-item" href="/services">Home Automations</a></li>
 		<li><a class="dropdown-item" href="/services">Smart Monitoring</a></li>
-		<li><hr class="dropdown-divider"></li>
-		<li><a class="dropdown-item" href="/services">Coming soon</a></li>
-		<li><hr class="dropdown-divider"></li>
 		<li><a class="dropdown-item" href="/services">Smart Business</a></li>
 		<li><a class="dropdown-item" href="/services">Machine Automation</a></li>
 		<li><a class="dropdown-item" href="/services">Smart Homes</a></li>
@@ -65,7 +62,8 @@
 		 href="/contacts"
 		 role="button"
 		 data-bs-toggle="dropdown"
-		 aria-expanded="false">Contacts</a>
+		 aria-expanded="false"
+		 >Contacts</a>
 
               <ul class="dropdown-menu">
 		<li>
@@ -80,13 +78,11 @@
 		</li>
               </ul>
             </li>
-            <li class="nav-item">
-		{%block navbarElement1%} {%endblock%}
-            </li>
-            <li class="nav-item">
-	      {%block navbarElement2%} {%endblock%}
-            </li>
 	  </ul>
+	  <div class="btn-group" role="group">
+	    {%block navbarElement1%} {%endblock%}
+	    {%block navbarElement2%} {%endblock%}
+	  </div>
 	</div>
 
       </div>
@@ -96,8 +92,8 @@
       {%block content%} {%endblock%}
     </div>
 
-    <footer>
-      <p> Jean-Paul KYOKYA - Everything IoT </p>
+    <footer align="center">
+      <p><strong><em> Jean-Paul KYOKYA - Everything IoT </em></strong></p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

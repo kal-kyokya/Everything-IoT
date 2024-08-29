@@ -1,0 +1,66 @@
+{%extends 'base_template.html'%}
+
+{%block title %}Sign up{%endblock%}
+
+{%block content%}
+<h1 align="center"> Sign up </h1>
+
+<form method="POST">
+  <div class="form">
+  <label class="form-label" for="email">Email</label>
+  <input class="form-control form-control-sm" name="email"
+	 type="email"
+	 placeholder="Enter email"
+	 id="email"
+	 aria-label="email">
+  <label class="form-label" for="firstName">First name</label>
+  <input class="form-control form-control-sm" name="firstName"
+	 type="text"
+	 placeholder="Enter your first name"
+	 id="firstName"
+	 aria-label="firstName">
+  <label class="form-label" for="lastName">Last name</label>
+  <input class="form-control form-control-sm" name="lastName"
+	 type="text"
+	 placeholder="Enter your last name"
+	 id="lastName"
+	 aria-label="lastName">
+  <label class="form-label" for="userName">Username</label>
+  <input class="form-control form-control-sm" name="userName"
+	 type="text"
+	 placeholder="Enter a username"
+	 id="userName"
+	 aria-label="userName">
+  <label class="form-label" for="phoneNumber">Phone number</label>
+  <input class="form-control form-control-sm" name="phoneNumber"
+	 type="text"
+	 placeholder="Enter your phone number"
+	 id="phoneNumber"
+	 aria-label="phoneNumber">
+  <label class="form-label" for="birthday">Birthday</label>
+  <input class="form-control form-control-sm" name="birthday"
+	 type="date"
+	 id="birthday"
+	 aria-label="birthday">
+  <label class="form-label" for="password1">Password</label>
+  <input class="form-control form-control-sm" name="password1"
+	 type="password"
+	 placeholder="Enter your password"
+	 id="password1"
+	 aria-label="password1">
+  <label class="form-label" for="password2">Confirm password</label>
+  <input class="form-control form-control-sm" name="password2"
+	 type="password"
+	 placeholder="Confirm your password"
+	 id="password2"
+	 aria-label="password2">
+
+  <br /><button class="btn btn-light"
+		name="submit"
+		type="submit">Sign up</button>
+  </div>
+</form>
+
+<br />
+
+{%endblock%}
