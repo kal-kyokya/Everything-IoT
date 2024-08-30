@@ -3,86 +3,109 @@
 {%block title %}Sign up{%endblock%}
 
 {%block content%}
-<h3 align="center"> Sign up </h3>
+<h1 align="center"> Sign up </h1>
 
 <form method="POST">
-  <div>
-  <label class="form-label" for="email">Email</label>
-  <input class="form-control form-control-sm" name="email"
-	 type="email"
-	 placeholder="Enter email"
-	 id="email"
-	 aria-label="email">
-  <label class="form-label" for="firstName">First name</label>
-  <input class="form-control form-control-sm" name="firstName"
-	 type="text"
-	 placeholder="Enter your first name"
-	 id="firstName"
-	 aria-label="firstName">
-  <label class="form-label" for="lastName">Last name</label>
-  <input class="form-control form-control-sm" name="lastName"
-	 type="text"
-	 placeholder="Enter your last name"
-	 id="lastName"
-	 aria-label="lastName">
-  <label class="form-label" for="userName">Username</label>
-  <input class="form-control form-control-sm" name="userName"
-	 type="text"
-	 placeholder="Enter a username"
-	 id="userName"
-	 aria-label="userName">
-  <label class="form-label" for="phoneNumber">Phone number</label>
-  <input class="form-control form-control-sm" name="phoneNumber"
-	 type="text"
-	 placeholder="Enter your phone number"
-	 id="phoneNumber"
-	 aria-label="phoneNumber">
-  <label class="form-label" for="birthday">Birthday</label>
-  <input class="form-control form-control-sm" name="birthday"
-	 type="date"
-	 id="birthday"
-	 aria-label="birthday">
-  <div class="row g-3 align-items-center">
-    <div class="col-auto">
-      <label for="inputPassword1" class="col-form-label">Password</label>
+  <div class="form">
+    <div class="input-group">
+      <span class="input-group-text"><strong>First and last name</strong></span>
+      <input class="form-control" name="firstName"
+	     type="text"
+	     placeholder="Enter your first name"
+	     id="firstName"
+	     aria-label="First name">
+      <input class="form-control" name="lastName"
+	     type="text"
+	     placeholder="Enter your last name"
+	     id="lastName"
+	     aria-label="lastName">
     </div>
-    <div class="col-auto">
-      <input type="password"
-	     id="inputPassword1"
-	     name="inputPassword1"
-	     class="form-control form-control-sm"
-	     aria-describedby="passwordHelpInline1">
-    </div>
-    <div class="col-auto">
-      <span id="passwordHelpInline1" class="form-text">
-	Must be 8-20 characters long.
-      </span>
-    </div>
-  </div>
-  
-  <div class="row g-3 align-items-center">
-    <div class="col-auto">
-      <label for="inputPassword2" class="col-form-label">Password</label>
-    </div>
-    <div class="col-auto">
-      <input type="password"
-	     id="inputPassword2"
-	     name="inputPassword2"
-	     class="form-control form-control-sm"
-	     aria-describedby="passwordHelpInline2">
-    </div>
-    <div class="col-auto">
-      <span id="passwordHelpInline2" class="form-text">
-	Must match previous password input.
-      </span>
-    </div>
-  </div>
 
-  <br />
-  <div align="center">
-    <button class="btn btn-dark" name="submit"
-	    type="submit">Sign up</button>
-  </div>
+    <br />
+    <div class="input-group">
+      <span class="input-group-text"><strong>Email and username</strong></span>
+      <input class="form-control" name="email"
+	     type="email"
+	     placeholder="Enter email"
+	     id="email"
+	     aria-label="email">
+      <input class="form-control" name="userName"
+	     type="text"
+	     placeholder="Enter a username"
+	     id="userName"
+	     aria-label="userName">
+    </div>
+
+    <br />
+    <div class="input-group">
+      <span class="input-group-text"><strong>Password</strong></span>
+      <input class="form-control" name="password1"
+	     type="password"
+	     placeholder="Enter your password"
+	     id="password1"
+	     aria-label="password1">
+      <input class="form-control" name="password2"
+	     type="password"
+	     placeholder="Confirm password"
+	     id="password2"
+	     aria-label="password2">
+    </div>
+
+    <br />
+    <div class="from-control" align="center"><strong>Optional Information</strong></div>
+
+    <br />
+    <span>&emsp;<strong>Sex:</strong>&emsp;</span>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" name="sex"
+	     type="radio"
+	     id="inlineRadio1"
+	     value="male">
+      <label class="form-check-label" for="inlineRadio1">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" name="sex"
+	     type="radio"
+	     id="inlineRadio1"
+	     value="female">
+      <label class="form-check-label" for="inlineRadio2">Female</label>
+    </div>
+
+    <br /><br />
+    <div class="input-group">
+      <span class="input-group-text"><strong>Country and city</strong></span>
+      <input class="form-control" name="country"
+	     type="text"
+	     id="country"
+	     placeholder="Country name"
+	     aria-label="country">
+      <input class="form-control" name="city"
+	     type="text"
+	     placeholder="City name"
+	     id="city"
+	     aria-label="city">
+    </div>
+
+    <br />
+    <div class="input-group">
+      <span class="input-group-text"><strong>Birthday and phone number</strong></span>
+      <input class="form-control" name="birthday"
+	     type="date"
+	     id="birthday"
+	     aria-label="birthday">
+      <input class="form-control" name="phoneNumber"
+	     type="text"
+	     placeholder="(+xxx) phone number"
+	     id="phoneNumber"
+	     aria-label="phoneNumber">
+    </div>
+
+    <br />
+    <div align="center">
+      <button class="btn btn-dark"
+	      name="submit"
+	      type="submit">Sign up</button>
+    </div>
   </div>
 </form>
 
