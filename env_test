@@ -1,0 +1,1 @@
+EIOT_USERNAME=eviot_test EIOT_PWD=eviot_test_pwd EIOT_HOST=localhost EIOT_DB_NAME=eviot_test_db EIOT_DB_ENV=test

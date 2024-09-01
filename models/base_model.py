@@ -6,7 +6,7 @@
 from datetime import datetime
 import models
 import sqlalchemy
-from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import Column, DateTime, String
 from sqlalchemy.ext.declarative import declarative_base
 import uuid
 
@@ -20,12 +20,12 @@ time_format = "%a %d %b %Y, %H:%M:%S"
 
 # Define the BaseModel class (A database table itself)
 class BaseModel:
-    """Defines attributes and methods common to all DB tables."""
+    """Define attributes and methods common to all DB tables."""
 
-    # Define the table columns
-    id = Column(String(25), primary_key=True)
-    created_at = Column(DateTime, nullable=False)
-    updated_at = Column(DateTime, nullable=False)
+    # Define the must-have columns of all tables
+    id = Column(String(45), primary_key=True)
+    created_on = Column(DateTime, nullable=False, default=datetime.now)
+    updated_on = Column(DateTime, nullable=False, default=datetime.now)
 
     # Define the '__init__' method
     def __init__(self, *args, **kwargs):
@@ -39,29 +39,39 @@ class BaseModel:
 
             if kwargs.get('id', None) is None:
                 self.id = str(uuid.uuid4())
-            if kwargs.get('created_at', None) is None:
-                self.created = datetime.utcnow()
-            elif type(self.created_at) is str:
-                self.__created_at = datetime.strptime(value, time_format)
-            if kwargs.get('updated_at', None) is None:
-                self.updated_at = datetime.utcnow()
-            elif type(self.updated_at) is str:
-                self.__updated_at = datetime.strptime(value, time_format)
+            if kwargs.get('created_on', None) is None:
+                self.created = datetime.now()
+            elif type(self.created_on) is str:
+                self.__created_on = datetime.strptime(value, time_format)
+            if kwargs.get('updated_on', None) is None:
+                self.updated_on = datetime.now()
+            elif type(self.updated_on) is str:
+                self.__updated_on = datetime.strptime(value, time_format)
 
         else:
             # Initialize the 3 compulsory attributes of all objects
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated = datetime.now()
+            self.created_on = datetime.now()
+            self.updated_on = datetime.now()
 
     # Define additional methods
+    def save(self):
+        """Store the associated object inside our database."""
+        self.updated_on = datetime.now()
+        models.storage.add(self)
+        models.storage.commit()
+
+    def delete(self):
+        """Remove the instance from the database storage"""
+        models.storage.delete(self)
+
     def __str__(self):
-        """Overwrites the built-in string representation for class objects."""
+        """Overwrite the built-in string representation of objects."""
         return ("This is a {}, created on {}\nid: {}".format(
-            self.__class__.__name__, self.created_at, self.id))
+            self.__class__.__name__, self.created_on, self.id))
 
     def to_dict(self):
-        """Generates a dictionary representation of the object."""
+        """Generate a dictionary representation of the object."""
         # Create a copy of the python dictionary representation of the object
         my_dict = self.__dict__.copy()
 
@@ -73,8 +83,8 @@ class BaseModel:
         my_dict['class'] = self.__class__.__name__
 
         # Convert datetime objects into user friendly strings
-        if my_dict.get('created_at'):
-            my_dict['created_at'] = my_dict['created_at'].strftime(time_format)
-        if my_dict.get('updated_at'):
-            my_dict['updated_at'] = my_dict['updated_at'].strftime(time_format)
+        if my_dict.get('created_on'):
+            my_dict['created_on'] = my_dict['created_on'].strftime(time_format)
+        if my_dict.get('updated_on'):
+            my_dict['updated_on'] = my_dict['updated_on'].strftime(time_format)
         return my_dict
