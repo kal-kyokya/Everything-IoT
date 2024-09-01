@@ -12,9 +12,22 @@ from sqlalchemy import Column, Date, DataTime, String
 # Create the class
 class User(BaseModel, Base):
     """Class to be mapped to the 'User' database table."""
-    __tablename__ = 'user'
-    email = Colum(String(45), nullable=False, unique=True)
-    username = Column(String(45), nullable=False, unique=True)
+    # Define the name the table will be registered under in the DB.
+    __tablename__ = 'User'
+
+    # Define the columns to be found in the table
+    Email = Colum(String(45), nullable=False, unique=True)
+    Username = Column(String(45), nullable=False, unique=True)
     Firstname = Column(String(45), nullable=False)
-    lastname = Column(String(45), nullable=False)
-    password = Column(String(45), nullable=False)
+    Lastname = Column(String(45), nullable=False)
+    Password = Column(String(45), nullable=False)
+    Sex = Column(String(45), nullable=True)
+    Phone = Column(String(45), nullable=True)
+    Country = Column(String(45), nullable=True)
+    City = Column(String(45), nullable=True)
+    Birthday = Column(Date(), nullable=True)
+
+    # Set up the __init__ method
+    def __init__(self):
+        """Called whenever a new object of type User is created."""
+        pass

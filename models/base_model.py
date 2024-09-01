@@ -24,8 +24,8 @@ class BaseModel:
 
     # Define the must-have columns of all tables
     id = Column(String(45), primary_key=True)
-    created_on = Column(DateTime, nullable=False, default=datetime.now)
-    updated_on = Column(DateTime, nullable=False, default=datetime.now)
+    created_on = Column(DateTime(), nullable=False, default=datetime.now)
+    updated_on = Column(DateTime(), nullable=False, default=datetime.now)
 
     # Define the '__init__' method
     def __init__(self, *args, **kwargs):
@@ -66,9 +66,16 @@ class BaseModel:
         models.storage.delete(self)
 
     def __str__(self):
-        """Overwrite the built-in string representation of objects."""
+        """Overwrite the __str__ built-in method.
+        '__str__' provides a string representation more readable for humans."""
         return ("This is a {}, created on {}\nid: {}".format(
             self.__class__.__name__, self.created_on, self.id))
+
+    def __repr__(self):
+        """Overwrite the __repr__ built-in method.
+        '__repr__' is for unambiguous string representation for developers."""
+        return ("{} {}\n".format(
+            upper(self.__class__.__name__), self.created_on, self.id))
 
     def to_dict(self):
         """Generate a dictionary representation of the object."""
