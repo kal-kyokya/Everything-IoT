@@ -1,0 +1,49 @@
+{%extends 'base_template.html'%}
+
+{%block title%} EverythingIoT {%endblock%}
+
+{%block navbarElement1%}
+<a class="btn btn-light"
+   href="/sign-in"
+   ><strong>Sign in</strong></a>
+{%endblock%}
+
+{%block navbarElement2%}
+<a class="btn btn-secondary"
+   href="/sign-up"
+   ><strong>Sign up</strong></a>
+{%endblock%}
+
+{%block content%}
+<p> One day you say to yourself:<br/>
+  <em>&emsp;&emsp;I would like to <strong>‘MARC’</strong> my house.</em><br/>
+  <ol>
+    <li>
+      <strong>M - Monitor</strong> the states and readings of my house's electronics from anywhere in the house to anywhere in the world and receive alerts.
+    </li>
+    <li>
+     <strong>A - Automate</strong> processes such as:
+     <ul>
+       <li>Curtain opening when my alarm goes off.</li>
+       <li>Bathroom lights state upon entry and exit.</li>
+       <li>Outdoor lights state depending on darkness levels.</li>
+     </ul>
+   </li>
+   <li>
+     <strong>RC - Remotely Control</strong> most, if not all, of my house’s integrated systems at any time. This implies operations such as:
+     <ul>
+       <li>Turn on the fan if the indoor Temperature and Humidity is too high.</li>
+       <li>Toggling the house’s Lights at will.</li>
+       <li>Turn on the water pump if the Soil Moisture level in my garden is below a certain threshold.</li>
+     </ul>
+   </li>
+   Here is how to do it:
+   <br/>
+   <em>&emsp;&emsp;EverythingIoT.</em>
+   <br/>
+  </ol>
+</p>
+
+<div></div><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+{%endblock%}

@@ -1,0 +1,38 @@
+{%extends 'base_template.html'%}
+
+{%block title %}Sign in{%endblock%}
+
+{%block content%}
+
+<h1 align="center"> Welcome back ! </h1>
+
+
+<form method="POST">
+  <div class="form-control">
+    
+  </br>
+  <label class="form-label" for="userName"><strong>Username/Email</strong></label>
+  <input class="form-control" name="userIdentifier"
+	 type="text"
+	 placeholder="Enter your email or username"
+	 id="userIdentifier"
+	 aria-label="userIdentifier">
+
+  </br>
+  <label class="form-label" for="password"><strong>Password</strong></label>
+  <input class="form-control" name="password"
+	 type="password"
+	 placeholder="Enter your password"
+	 id="password"
+	 aria-label="password">
+
+  </br>
+  <div align="center">
+    <button class="btn btn-dark" name="submit" type="submit"><strong>Sign in</strong></button>
+  </div>
+</form>
+</div>
+
+<div></div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+{%endblock%}

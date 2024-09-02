@@ -1,0 +1,31 @@
+{%extends 'base_template.html'%}
+
+{%block title %}Sign in{%endblock%}
+
+<></>
+
+{%block content%}
+<h1 align="center"> Sign in </h1>
+<div>
+  <form method="POST" align="center">
+  </br><label for="userName">Username/Email</label>
+  <input name="userIdentifier"
+	 type="text"
+	 placeholder="Enter your email or username"
+	 id="userIdentifier"
+	 aria-label="userIdentifier">
+  </br><label for="password">Password</label>
+  <input name="password"
+	 type="password"
+	 placeholder="Enter your password"
+	 id="password"
+	 aria-label="password">
+
+  </br></br>
+  <button name="submit" type="submit">Sign in</button>
+  </form>
+</div>
+
+</br>
+
+{%endblock%}

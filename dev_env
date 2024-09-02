@@ -1,0 +1,1 @@
+EIOT_USERNAME=eviot_dev EIOT_PWD=eviot_dev_pwd EIOT_HOST=localhost EIOT_DB_NAME=eviot_dev_db EIOT_DB_ENV=dev
