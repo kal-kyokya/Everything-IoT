@@ -6,7 +6,7 @@
 from datetime import datetime
 from models.base_model import BaseModel, Base
 import sqlalchemy
-from sqlalchemy import Column, Date, DataTime, String
+from sqlalchemy import Column, Date, String
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash
 
@@ -22,7 +22,7 @@ class User(BaseModel, Base):
     __tablename__ = 'User'
 
     # Define the columns to be found in the table
-    Email = Colum(String(45), nullable=False, unique=True)
+    Email = Column(String(45), nullable=False, unique=True)
     Username = Column(String(45), nullable=False, unique=True)
     Firstname = Column(String(45), nullable=False)
     Lastname = Column(String(45), nullable=False)

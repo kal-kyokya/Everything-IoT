@@ -8,6 +8,13 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+from models.user import User
+from models.dashboard import Dashboard
+from models.microcontroller import Microcontroller
+from models.sensor import Sensor
+from models.type import Type
+from models.thing import Thing
+from models.location import Location
 
 
 # List the DB tables in a dict for easier retrieval
@@ -37,7 +44,7 @@ class DBStorage:
         # Create the database engine
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
                                       format(USERNAME, PWD,
-                                             HOST, DB_NAME))
+                                             HOST, DB_NAME), echo=True)
 
         # Delete all the tables if the DB used is for testing new features
         if DB_ENV == 'test':
@@ -47,7 +54,7 @@ class DBStorage:
     def remember(self):
         """Reload records created during past sessions."""
         # Recreate all previously defined tables and load their content
-        Base.metadata.create_all(self.__engine, echo=True)
+        Base.metadata.create_all(self.__engine)
 
         # Create a class whose objects can manipulate the 'engine' database
         Session = sessionmaker(bind=self.__engine)
