@@ -1,17 +1,23 @@
 #!/usr/bin/python3
 """
-'user' declare and define the DB table storing user's infos
+'user' declares and defines the DB table storing user's infos
 """
 # Import necessary modules
 from datetime import datetime
-from models.base_model import Base, BaseModel
+from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, Date, DataTime, String
+from sqlalchemy.orm import relationship
+from werkzeug.security import generate_password_hash
 
 
 # Create the class
 class User(BaseModel, Base):
-    """Class to be mapped to the 'User' database table."""
+    """Class to be mapped to the 'User' database table.
+    Parent classes:
+        BaseModel: Contains methods shared by all database tables .
+        Base: Contains the utility mapping classes to database tables.
+    """
     # Define the name the table will be registered under in the DB.
     __tablename__ = 'User'
 
@@ -27,7 +33,18 @@ class User(BaseModel, Base):
     City = Column(String(45), nullable=True)
     Birthday = Column(Date(), nullable=True)
 
+    # Establish one to many relationship with the Dashboard table
+    Dashboards = relationship('Dashboard', back_populates='User')
+
     # Set up the __init__ method
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Called whenever a new object of type User is created."""
-        pass
+        # Use the init method declared in the inherited BaseModel
+        super().__init__(*args, **kwargs)
+
+        # Make sure the user password is not stored in plain text
+        if self.Password:
+            # Use a hashing function to encrypt and thus secure the password
+            self.Password = generate_password_hash(self.Password,
+                                                   method='pbkdf2:sha256',
+                                                   salt_length=8)
