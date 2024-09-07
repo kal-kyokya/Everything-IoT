@@ -1,0 +1,55 @@
+{%extends 'base_template.html'%}
+
+{%block title%} EverythingIoT {%endblock%}
+
+{%block navbarElement1%}
+<a class="btn btn-light"
+   href="/projects"
+   ><strong>Projects</strong></a>
+{%endblock%}
+
+{%block navbarElement2%}
+<a class="btn btn-secondary"
+   href="/logout"
+   ><strong>Log out</strong></a>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  <h1 align="center">
+    <em>Hello {{user.username}} ! </em>
+  </h1>
+  <br/><br/>
+  <p> &emsp;&emsp;Remember, <em><strong>‘MARC’</strong></em>, as in:
+    <br/>
+    <ol>
+      <li>
+	<strong>M - Monitor</strong> the states and readings of my house's electronics from anywhere in the house to anywhere in the world and receive alerts.
+      </li>
+      <li>
+	<strong>A - Automate</strong> processes such as:
+	<ul>
+	  <li>Curtain opening when my alarm goes off.</li>
+	  <li>Bathroom lights state upon entry and exit.</li>
+	  <li>Outdoor lights state depending on darkness levels.</li>
+	</ul>
+      </li>
+      <li>
+	<strong>RC - Remotely Control</strong> most, if not all, of my house’s integrated systems at any time. This implies operations such as:
+	<ul>
+	  <li>Turn on the fan if the indoor Temperature and Humidity is too high.</li>
+	  <li>Toggling the house’s Lights at will.</li>
+	  <li>Turn on the water pump if the Soil Moisture level in my garden is below a certain threshold.</li>
+	</ul>
+      </li>
+      <br />
+      How to get started ?
+      <br />
+      &emsp;Click on the 'Projects' button or <a href="/projects"><em>here.</em></a>
+      <br/>
+    </ol>
+  </p>
+</div>
+<div></div><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+{%endblock%}

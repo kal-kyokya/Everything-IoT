@@ -17,22 +17,28 @@ class Sensor(BaseModel, Base):
         Base: Contains the utility mapping classes to database tables.
     """
     # Define the name to be used during table creation by the database
-    __tablename__ = "Sensor"
+    __tablename__ = "sensors"
 
     # Define the table's columns
-    Name = Column(String(45), nullable=False, unique=True)
+    name = Column(String(45), nullable=False, unique=True)
 
     # Establish a many to one relationship with the microcontroller table
-    Microcontroller_id = Column(String(45), ForeignKey('Microcontroller.id'))
-    Controller = relationship('Microcontroller', back_populates='Sensor')
+    microcontroller_id = Column(String(45), ForeignKey('microcontrollers.id'))
+    controller = relationship('Microcontroller',
+                              back_populates='sensors',
+                              cascade='delete')
 
     # Establish a many to one relationship with the type table
-    Type_id = Column(String(45), ForeignKey('Type.id'))
-    Sensor_type = relationship('Type', back_populates='Sensor')
+    type_id = Column(String(45), ForeignKey('types.id'))
+    sensor_type = relationship('Type',
+                               back_populates='sensors',
+                               cascade='delete')
 
     # Establish a many to one relationship with the location table
-    Location_id = Column(String(45), ForeignKey('Location.id'))
-    Sensor_location = relationship('Location', back_populates='Sensor')
+    location_id = Column(String(45), ForeignKey('locations.id'))
+    sensor_location = relationship('Location',
+                                   back_populates='sensors',
+                                   cascade='delete')
 
     # Set up the __init__ method
     def __init__(self, *args, **kwargs):

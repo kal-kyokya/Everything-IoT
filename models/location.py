@@ -17,17 +17,22 @@ class Location(BaseModel, Base):
         Base: Contains the utility mapping classes to database tables.
     """
     # Define the name to be used during table creation by the database
-    __tablename__ = "Location"
+    __tablename__ = "locations"
 
     # Define the table's columns
-    Name = Column(String(45), nullable=False, unique=True)
-    Description = Column(String(45), nullable=False)
+    name = Column(String(45), nullable=False, unique=True)
+    description = Column(String(45), nullable=False)
 
     # Establish a one to many relationsip with database tables
-    Microcontrollers = relationship('Microcontroller',
-                                    back_populates='Location')
-    Things = relationship('Thing', back_populates='Location')
-    Sensors = relationship('Sensor', back_populates='Sensor')
+    microcontrollers = relationship('Microcontroller',
+                                    back_populates='controller_location',
+                                    cascade='delete')
+    things = relationship('Thing',
+                          back_populates='thing_location',
+                          cascade='delete')
+    sensors = relationship('Sensor',
+                           back_populates='sensor_location',
+                           cascade='delete')
 
     # Set up the __init__ method
     def __init__(self, *args, **kwargs):

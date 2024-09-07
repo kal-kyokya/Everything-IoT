@@ -5,20 +5,20 @@
 {%block content%}
 <h1 align="center"> Sign up </h1>
 
-<form method="POST">
+<form class="container" method="POST">
   <div class="form-control">
     <br /><div class="input-group">
       <span class="input-group-text"><strong>First and last name</strong></span>
-      <input class="form-control" name="firstName"
+      <input class="form-control" name="firstname"
 	     type="text"
 	     placeholder="Enter your first name"
-	     id="firstName"
+	     id="firstname"
 	     aria-label="First name">
-      <input class="form-control" name="lastName"
+      <input class="form-control" name="lastname"
 	     type="text"
 	     placeholder="Enter your last name"
-	     id="lastName"
-	     aria-label="lastName">
+	     id="lastname"
+	     aria-label="lastname">
     </div>
 
     <br />
@@ -29,26 +29,26 @@
 	     placeholder="Enter email"
 	     id="email"
 	     aria-label="email">
-      <input class="form-control" name="userName"
+      <input class="form-control" name="username"
 	     type="text"
 	     placeholder="Enter a username"
-	     id="userName"
-	     aria-label="userName">
+	     id="username"
+	     aria-label="username">
     </div>
 
     <br />
     <div class="input-group">
       <span class="input-group-text"><strong>Password</strong></span>
-      <input class="form-control" name="password1"
+      <input class="form-control" name="password"
 	     type="password"
 	     placeholder="Enter your password"
-	     id="password1"
-	     aria-label="password1">
-      <input class="form-control" name="password2"
+	     id="password"
+	     aria-label="password">
+      <input class="form-control" name="password1"
 	     type="password"
 	     placeholder="Confirm password"
-	     id="password2"
-	     aria-label="password2">
+	     id="password1"
+	     aria-label="password1">
     </div>
 
     <br />
@@ -93,20 +93,28 @@
 	     type="date"
 	     id="birthday"
 	     aria-label="birthday">
-      <input class="form-control" name="phoneNumber"
+      <input class="form-control" name="phone"
 	     type="text"
 	     placeholder="(+xxx) phone number"
-	     id="phoneNumber"
-	     aria-label="phoneNumber">
+	     id="phone"
+	     aria-label="phone">
     </div>
 
     <br />
     <div align="center">
       <button class="btn btn-dark"
-	      name="submit"
 	      type="submit">Sign up</button>
   </div>
 </form>
-</div><br /><br /><br /><br /><br /><br /><br /><br />
+<br />
+<p align="center">
+  <em>
+    Already have an account ?
+    <a href="{{url_for('auth.signin')}}">
+      Sign in
+    </a>
+  </e>
+</p>
+</div><br /><br /><br /><br /><br /><br /><br />
 
 {%endblock%}

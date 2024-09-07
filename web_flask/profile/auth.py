@@ -3,7 +3,19 @@
 'auth' contains the routes required during user authentication.
 """
 # Import the necessary modules and/or tools
-from flask import Blueprint, flash, render_template, request
+from flask import (
+    Blueprint, flash, render_template,
+    redirect, request, url_for)
+from flask_login import login_user, login_required, logout_user, current_user
+from models.user import User
+from models.dashboard import Dashboard
+from models.microcontroller import Microcontroller
+from models.sensor import Sensor
+from models.type import Type
+from models.thing import Thing
+from models.location import Location
+from models import storage
+from werkzeug.security import check_password_hash
 
 
 # Declare this file as Blueprint to the Everything IoT Web App
@@ -17,45 +29,65 @@ def signup():
     if request.method == 'POST':
         # Get user details
         form = request.form
-        must_have = ['email', 'firstName', 'lastName',
-                     'birthday', 'password1', 'password2']
+        MUST_HAVE = ['firstname', 'lastname', 'email',
+                     'username', 'password', 'password1']
+
+        # Ensure the required fields are provided
+        MISSING = []
+        for field in MUST_HAVE:
+            if field not in form.keys() or form.get(field) == "":
+                MISSING.append(field.capitalize())
+        if len(MISSING) > 0:
+            flash("{} must be filled".format(MISSING),
+                  category='missing_input')
+            return redirect(url_for('auth.signup'))
 
         # Ensure email not 'already in use'
         # Query User table in database for record whose email match
         # If present flash error message else proceed.
-
-        # Ensure some required fields are provided
-        for key in form.keys():
-            if key not in must_have:
-                print("missing {} input".format(key))
-                flash("{} must be filled".format(key),
-                      category='missing_input')
+        users = storage.all(User)
+        if len(users) > 0:
+            for user in users.values():
+                if user.email == form.get('email'):
+                    flash("Email already in use.", category='invalid_input')
+                    return redirect('/sign-up')
+                elif user.username == form.get('username'):
+                    flash("Username already in use.", category='invalid_input')
+                    return redirect('/sign-up')
 
         # Validate each of them and flash error message if invalid
         if len(form.get('email')) < 12:
             flash('The email must be at least 12 characters long.',
                   category='invalid_input')
-        elif len(form.get('firstName')) < 2:
+        elif len(form.get('firstname')) < 2:
             flash('The first name must be at least 2 characters long.',
                   category='invalid_input')
-        elif len(form.get('lastName')) < 2:
+        elif len(form.get('lastname')) < 2:
             flash('The last name must be at least 2 characters long.',
                   category='invalid_input')
-        elif len(form.get('phoneNumber')) != 12:
+        elif form.get('phone') != "" and len(form.get('phone')) < 10:
             flash('The phone number must be at least 12 characters long.',
                   category='invalid_input')
-        elif len(form.get('password1')) < 8:
+        elif len(form.get('password')) < 8:
             flash('The password must be at least 8 characters long.',
                   category='invalid_input')
-        elif form.get('password1') != form.get('password2'):
+        elif form.get('password') != form.get('password1'):
             flash('The two password do not match.',
                   category='invalid_input')
         else:
+            # Create new user
+            user_dict = {}
+            for key, value in form.items():
+                if key == "birthday" and value == "":
+                    value = None
+                user_dict[key] = value
+            new_user = User(**user_dict)
+            storage.add(new_user)
+            storage.commit()
             flash("Hello {}, welcome to Everything IoT".format(
                 form.get('username')), category='success')
-            return redirect(url_for(home.routes.home))
-
-        # Redirect to 'logged in' landing page.
+            # Redirect to 'logged in' landing page.
+            return redirect(url_for('auth.signin'))
 
     return render_template('signup.html')
 
@@ -63,30 +95,35 @@ def signup():
 @auth_bp.route('/sign-in', methods=['GET', 'POST'])
 def signin():
     """Allows users to access their accounts."""
-    # Retrieve User credentials
-    form = request.form
-    user = form.get('userIdentifier')
-    pwd = form.get('password')
+    if request.method == 'POST':
+        # Retrieve User credentials
+        form = request.form
+        userID = form.get('userIdentifier')
+        password = form.get('password')
 
-    """    # Ensure requested user exists in the database
-    email = query.User.filter_by(email=user).first()
-    username = query.User.filter_by(username=user).first()
+        # Ensure requested user exists in the database
+        users = storage.all(User)
+        for user in users.values():
+            if user.email == userID or user.username == userID:
+                # Ensure input password matches the database version
+                if check_password_hash(user.password, password):
+                    login_user(user)
+                    return redirect(url_for('home.loggedIn'))
+                else:
+                    flash("Invalid password", category='invalid_input')
+                    break
 
-    if email or username:
-        query_obj = query.User.filter_by(password=pwd).first()
-        # Ensure input password matches the database version
-        if query_obj and user == query_obj.get('email') or
-        user == query_obj.get('username'):
-            return redirect(url_for(home.routes.home))"""
-    return render_template('signin.html')
+        flash("Invalid Username/Email", category='invalid_input')
+        return render_template('signin.html')
 
+    else:
+        return render_template('signin.html')
 
 @auth_bp.route('/logout')
+@login_required
 def logout():
     """Handles user logout requests."""
-    # Ensure there was an ongoing user session
-
     # End session
-
-    # Redirect to 'logged out' landing page
-    return render_template('home.html')
+    logout_user()
+    # Redirect to the 'logged out' page
+    return redirect(url_for('home.home'))

@@ -17,23 +17,29 @@ class Thing(BaseModel, Base):
         Base: Contains the utility mapping classes to database tables.
     """
     # Define the name to be used during table creation by the database
-    __tablename__ = "Thing"
+    __tablename__ = "things"
 
     # Define the table's columns
-    Name = Column(String(45), nullable=False, unique=True)
-    State = Column(Boolean(), nullable=False)
+    name = Column(String(45), nullable=False, unique=True)
+    state = Column(Boolean(), nullable=False)
 
     # Establish a many to one relationship with the microcontroller table
-    Microcontroller_id = Column(String(45), ForeignKey('Microcontroller.id'))
-    Controller = relationship('Microcontroller', back_populates='Thing')
+    microcontroller_id = Column(String(45), ForeignKey('microcontrollers.id'))
+    controller = relationship('Microcontroller',
+                              back_populates='things',
+                              cascade='delete')
 
     # Establish a many to one relationship with the location table
-    Location_id = Column(String(45), ForeignKey('Location.id'))
-    Thing_location = relationship('Location', back_populates='Thing')
+    location_id = Column(String(45), ForeignKey('locations.id'))
+    thing_location = relationship('Location',
+                                  back_populates='things',
+                                  cascade='delete')
 
     # Establish a many to one relationship with the type table
-    Type_id = Column(String(45), ForeignKey('Type.id'))
-    Sensor_type = relationship('Type', back_populates='Thing')
+    type_id = Column(String(45), ForeignKey('types.id'))
+    thing_type = relationship('Type',
+                              back_populates='things',
+                              cascade='delete')
 
     # Set up the __init__ method
     def __init__(self, *args, **kwargs):

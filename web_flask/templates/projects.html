@@ -1,0 +1,71 @@
+{%extends 'base_template.html'%}
+
+{%block title%} Projects {%endblock%}
+
+{%block navbarElement1%}
+<a class="btn btn-secondary"
+   href="/logout"
+   ><strong>Log out</strong></a>
+{%endblock%}
+
+{%block navbarElement2%}
+<a class="btn btn-light"
+   href="/home"
+   ><strong>Home</strong></a>
+{%endblock%}
+
+{%block content%}
+<nav class="navbar navbar-expand-lg" style="background-color: #9FADBC;">
+  <div class="container-fluid">
+    <button class="navbar-toggler"
+	    type="button"
+	    data-bs-toggle="collapse"
+	    data-bs-target="#navbarSupportedContent"
+	    aria-controls="navbarSupportedContent"
+	    aria-expanded="false"
+	    aria-label="Toggle navigation"
+	    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/Account">Account</a></strong>
+        </li>
+        <li class="nav-item">
+	    <strong><a class="nav-link" href="/dashboards">Dashboards</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/Monitors">Monitors</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/alerts">Alerts</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/theme">Theme</a></strong>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/help">Help</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/Recent">Recent</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/create">Create dashboard</a></strong>
+        </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h1 align="center">
+  <em> Projects, projects, projects ! </em>
+</h1>
+
+<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
+
+{%endblock%}

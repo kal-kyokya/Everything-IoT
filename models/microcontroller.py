@@ -17,25 +17,30 @@ class Microcontroller(BaseModel, Base):
         Base: Possesses the utility mapping classes to database tables.
     """
     # Define the name to be used during table creation by the database
-    __tablename__ = "Microcontroller"
+    __tablename__ = "microcontrollers"
 
     # Define the table's columns
-    Name = Column(String(45), nullable=False, unique=True)
-    Model = Column(String(45), nullable=False)
-    Status = Column(String(45), nullable=False)
+    name = Column(String(45), nullable=False, unique=True)
+    model = Column(String(45), nullable=False)
+    status = Column(String(45), nullable=False)
 
     # Establish a many to one relationship with the dashboard table
-    Dashboard_id = Column(String(45), ForeignKey('Dashboard.id'))
-    Board = relationship('Dashboard', back_populates='Microcontroller')
+    dashboard_id = Column(String(45), ForeignKey('dashboards.id'))
+    board = relationship('Dashboard',
+                         back_populates='microcontrollers',
+                         cascade='delete')
 
     # Establish a many to one relationship with the location table
-    Location_id = Column(String(45), ForeignKey('Location.id'))
-    Controller_location = relationship('Location',
-                                       back_populates='Microcontroller')
+    location_id = Column(String(45), ForeignKey('locations.id'))
+    controller_location = relationship('Location',
+                                       back_populates='microcontrollers',
+                                       cascade='delete')
 
     # Establish one to many relationships with the Sensor and Thing tables
-    Sensors = relationship('Sensor', back_populates='Microcontroller')
-    Things = relationship('Thing', back_populates='Microcontroller')
+    sensors = relationship('Sensor', back_populates='controller')
+    things = relationship('Thing',
+                          back_populates='controller',
+                         cascade='delete')
 
     # Set up the __init__ method
     def __init__(self, *args, **kwargs):

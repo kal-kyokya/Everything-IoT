@@ -4,10 +4,10 @@
 
 {%block content%}
 
-<h1 align="center"> Welcome back ! </h1>
+<h1 align="center"> Let's get started ! </h1>
 
 
-<form method="POST">
+<form class="container" method="POST">
   <div class="form-control">
     
   </br>
@@ -28,10 +28,19 @@
 
   </br>
   <div align="center">
-    <button class="btn btn-dark" name="submit" type="submit"><strong>Sign in</strong></button>
+    <button class="btn btn-dark" type="submit"><strong>Sign in</strong></button>
   </div>
 </form>
 </div>
+<br />
+<p align="center">
+  <em>
+    Don't have an account ?
+    <a href="{{url_for('auth.signup')}}">
+      Sign up
+    </a>
+  </em>
+</p>
 
 <div></div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 

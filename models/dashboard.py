@@ -17,18 +17,21 @@ class Dashboard(BaseModel, Base):
         Base: Contains the utility mapping classes to database tables.
     """
     # Define the name to be used during table creation by the database
-    __tablename__ = "Dashboard"
+    __tablename__ = "dashboards"
 
     # Define the table's columns
-    Name = Column(String(45), nullable=False, unique=True)
+    name = Column(String(45), nullable=False, unique=True)
 
     # Establish a one to many relationship with the microcontroller table
-    Microcontrollers = relationship('Microcontroller',
-                                    back_populates='Dashboard')
+    microcontrollers = relationship('Microcontroller',
+                                    back_populates='board',
+                                    cascade='delete')
 
     # Establish a many to one relationship with the user table
-    User_id = Column(String(45), ForeignKey('User.id'))
-    Owner = relationship('User', back_populates='Dashboard')
+    user_id = Column(String(45), ForeignKey('users.id'))
+    owner = relationship('User',
+                         back_populates='dashboards',
+                         cascade='delete')
 
     # Set up the __init__ method
     def __init__(self, *args, **kwargs):

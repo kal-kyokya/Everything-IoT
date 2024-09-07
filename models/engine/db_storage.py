@@ -57,13 +57,13 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
 
         # Create a class whose objects can manipulate the 'engine' database
-        Session = sessionmaker(bind=self.__engine)
+        Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
 
         # Wrap the class and enable thread-safe management of session objects
         safeSession = scoped_session(Session)
 
-        # Initialize the 'session' attribute by instanciating safeSession
-        self.__session = safeSession()
+        # Initialize the 'session' attribute by assigning safeSession to it
+        self.__session = safeSession
 
     # Additional useful methods for CRUD Operations
     def add(self, obj):
@@ -72,16 +72,33 @@ class DBStorage:
             obj - The object representing the created record.
         """
         self.__session.add(obj)
-
-    def commit(self):
-        """Register changes made to the DB, e.g;  In CRUD, a 'U' operation."""
-        self.__session.commit()
+        print(obj)
 
     def delete(self, obj):
         """Remove a database row; 'D' in CRUD.
         Arg:
             obj - The object to be deleted."""
         self.__session.delete(obj)
+
+    def delete_all(self):
+        """Delete all stored objects, for testing purposes"""
+        for c in classes.values():
+            query_obj = self.__session.query(c)
+            all_objs = [obj for obj in query_obj]
+            for obj in range(len(all_objs)):
+                to_delete = all_objs.pop(0)
+                to_delete.delete()
+        self.save()
+
+    def rollback_session(self):
+        """
+            rollsback a session in the event of an exception
+        """
+        self.__session.rollback()
+
+    def commit(self):
+        """Register changes made to the DB, e.g;  In CRUD, a 'U' operation."""
+        self.__session.commit()
 
     def all(self, cls=None):
         """Request a set of records from the current database session"""
