@@ -38,6 +38,7 @@ login_manager.init_app(app)
 # Define the default route
 login_manager.login_view = "auth.signin"
 
+
 # Define method that fetches logged in user's object format
 @login_manager.user_loader
 def load_user(user_id):
@@ -48,6 +49,7 @@ def load_user(user_id):
     for user in users:
         if user.id == user_id:
             return user
+
 
 # Only run the web app if this file's directly executed,
 # not if it is imported as a module in another script.
