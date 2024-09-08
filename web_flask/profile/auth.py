@@ -72,7 +72,7 @@ def signup():
             flash('The password must be at least 8 characters long.',
                   category='invalid_input')
         elif form.get('password') != form.get('password1'):
-            flash('The two password do not match.',
+            flash('The passwords do not match.',
                   category='invalid_input')
         else:
             # Create new user
@@ -84,6 +84,7 @@ def signup():
             new_user = User(**user_dict)
             storage.add(new_user)
             storage.commit()
+            login_user(new_user, remember=True)
             flash("Hello {}, welcome to Everything IoT".format(
                 form.get('username')), category='success')
             # Redirect to 'logged in' landing page.
@@ -107,13 +108,13 @@ def signin():
             if user.email == userID or user.username == userID:
                 # Ensure input password matches the database version
                 if check_password_hash(user.password, password):
-                    login_user(user)
+                    login_user(user, remember=True)
                     return redirect(url_for('home.loggedIn'))
                 else:
                     flash("Invalid password", category='invalid_input')
                     break
 
-        flash("Invalid Username/Email", category='invalid_input')
+        flash("Check Username/Email or Sign Up", category='invalid_input')
         return render_template('signin.html')
 
     else:
