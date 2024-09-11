@@ -1,6 +1,6 @@
 {%extends 'base_template.html'%}
 
-{%block title%} Projects {%endblock%}
+{%block title%} EverythingIoT Projects {%endblock%}
 
 {%block navbarElement1%}
 <a class="btn btn-secondary"
@@ -31,27 +31,41 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <strong><a class="nav-link" href="/Account">Account</a></strong>
+          <strong><a class="nav-link" href="/recent">Recent</a></strong>
+        </li>
+        <li class="nav-item">
+          <strong><a class="nav-link" href="/create">Create dashboard</a></strong>
         </li>
         <li class="nav-item">
 	    <strong><a class="nav-link" href="/dashboards">Dashboards</a></strong>
         </li>
         <li class="nav-item">
-          <strong><a class="nav-link" href="/Monitors">Monitors</a></strong>
+          <strong><a class="nav-link" href="/monitors">Monitors</a></strong>
         </li>
         <li class="nav-item">
           <strong><a class="nav-link" href="/alerts">Alerts</a></strong>
         </li>
-        <li class="nav-item">
-          <strong><a class="nav-link" href="/theme">Theme</a></strong>
-        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+	     role="button"
+	     data-bs-toggle="dropdown"
+	     aria-expanded="false"
+	     >
+	    <strong>Themes</strong></a>
+
+          <ul class="dropdown-menu">
+	    <li>
+	      <a class="dropdown-item"><strong>Light</strong></a>
+	    </li>
+	    <li>
+	      <a class="dropdown-item"><strong>Dark</strong></a>
+	    </li>
+          </ul>
+        </li>
           <strong><a class="nav-link" href="/help">Help</a></strong>
         </li>
         <li class="nav-item">
-          <strong><a class="nav-link" href="/Recent">Recent</a></strong>
-        </li>
-        <li class="nav-item">
-          <strong><a class="nav-link" href="/create">Create dashboard</a></strong>
+          <strong><a class="nav-link" href="/account">Account</a></strong>
         </li>
           </ul>
         </li>
@@ -60,9 +74,11 @@
   </div>
 </nav>
 
+{%block body%}
 <h1 align="center">
   <em> Projects, projects, projects ! </em>
 </h1>
+{%endblock%}
 
 <br /><br /><br /><br /><br /><br /><br />
 <br /><br /><br /><br /><br /><br /><br />

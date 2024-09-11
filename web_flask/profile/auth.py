@@ -59,6 +59,9 @@ def signup():
         if len(form.get('email')) < 12:
             flash('The email must be at least 12 characters long.',
                   category='invalid_input')
+        elif " " in form.get('username'):
+            flash('For Username, no space allowed use ("-", "_") instead.',
+                  category='invalid_input')
         elif len(form.get('firstname')) < 2:
             flash('The first name must be at least 2 characters long.',
                   category='invalid_input')
@@ -109,7 +112,7 @@ def signin():
                 # Ensure input password matches the database version
                 if check_password_hash(user.password, password):
                     login_user(user, remember=True)
-                    return redirect(url_for('home.loggedIn'))
+                    return redirect(url_for('home.home'))
                 else:
                     flash("Invalid password", category='invalid_input')
                     break
@@ -119,6 +122,7 @@ def signin():
 
     else:
         return render_template('signin.html')
+
 
 @auth_bp.route('/logout')
 @login_required
