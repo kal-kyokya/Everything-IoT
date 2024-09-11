@@ -12,17 +12,12 @@ home_bp = Blueprint('home', __name__)
 
 
 # Endpoint definitions
-@home_bp.route('/')
+@home_bp.route('/home')
 def home():
     """Landing page of the web application."""
-    return render_template('logged_out.html')
-
-
-@home_bp.route('/home')
-@login_required
-def loggedIn():
-    """Home page as seen by any logged in user."""
-    return render_template('logged_in.html', user=current_user)
+    if current_user.is_authenticated:
+        return render_template('logged_in.html', user=current_user)
+    return render_template('logged_out.html')    
 
 
 @home_bp.route('/services/<service>')

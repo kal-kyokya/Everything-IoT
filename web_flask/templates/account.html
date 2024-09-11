@@ -1,0 +1,101 @@
+{%extends 'projects.html'%}
+
+{%block body%}
+
+<div class="container">
+  <h1 align="center"> Account Informations </h1>
+
+  <form class="container">
+    <div class="form-control">
+      <br />
+      <div class="mb-3 row">
+	<label for="email" class="col-sm-2 col-form-label">&emsp;
+	  <strong>Email:</strong>
+	</label>
+	<div class="col-sm-10">
+	  <input type="text" readonly
+		 class="form-control-plaintext"
+		 id="email"
+		 value={{user.email}}>
+	</div>
+	<div class="mb-3 row">
+	  <label for="username" class="col-sm-2 col-form-label">&emsp;
+	    <strong>Username:</strong>
+	  </label>
+	  <div class="col-sm-10">
+	    <input type="text" readonly
+		   class="form-control-plaintext"
+		   id="username"
+		   value={{user.username}}>
+	  </div>
+	  <div class="mb-3 row">
+	    <label for="firstname" class="col-sm-2 col-form-label">&emsp;
+	      <strong>First name:</strong>
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" readonly
+		     class="form-control-plaintext"
+		     id="firstname"
+		     value={{user.firstname}}>
+	    </div>
+	    <div class="mb-3 row">
+	      <label for="lastname" class="col-sm-2 col-form-label">&emsp;
+		<strong>Last name:</strong>
+	      </label>
+	      <div class="col-sm-10">
+		<input type="text" readonly
+		       class="form-control-plaintext"
+		       id="lastname"
+		       value={{user.lastname}}>
+	      </div>
+	      {%if user.country%}
+	      <div class="mb-3 row">
+		<label for="country" class="col-sm-2 col-form-label">&emsp;
+		  <strong>Country:</strong>
+		</label>
+		<div class="col-sm-10">
+		  <input type="text" readonly
+			 class="form-control-plaintext"
+			 id="country"
+			 value={{user.country}}>
+		</div>
+		{%endif%}
+		{%if user.city%}
+		<div class="mb-3 row">
+		  <label for="city" class="col-sm-2 col-form-label">&emsp;
+		    <strong>City:</strong>
+		  </label>
+		  <div class="col-sm">
+		    <input type="text" readonly
+			   class="form-control-plaintext"
+			   id="city"
+			   value={{user.city}}>
+		  </div>
+		  {%endif%}
+		  {%if user.phone%}
+		  <div class="mb-3 row">
+		    <label for="phone" class="col-sm-2 col-form-label">&emsp;
+		      <strong>Phone:</strong>
+		    </label>
+		    <div class="col-sm-10">
+		      <input type="text" readonly
+			     class="form-control-plaintext"
+			     id="phone"
+			     value={{user.phone}}>
+		    </div>
+		    {%endif%}
+		  </div>
+
+		  <br />
+		  <div align="center">
+		    <button class="btn btn-dark">Edit</button>
+		  </div>
+  </form>
+  <br /><br />
+  <p align="center"><em>Have a secondary account ?
+      <a href="{{url_for('auth.signin')}}">Sign in</a></e>
+  </p>
+
+</div>
+
+{%endblock%}
