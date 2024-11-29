@@ -2,7 +2,11 @@
 
 # :bulb: Everything IoT :bulb:
 
-In this project I will be * and implementing *. Primarily * and *. I will also be *.
+In this project I will be developping an Internet of Things web application and implementing Python Programming knowledge acquire through ALX Africa. Primarily the front end appearance and the storage logic. I will also be laying down the foundation for ease in future upgrades.
+
+**Description**: An end-to-end IoT project focusing on Embedded Systems. This includes backend development, dynamic web content using Flask, and static resources management.
+**Technologies Used**: Python, Flask, SQL, HTML, and JavaScript.
+**My Key Contributions**: Developed API endpoints and implemented responsive web interfaces for IoT data display.
 
 ## :running: Getting Started
 
