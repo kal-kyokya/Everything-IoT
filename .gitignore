@@ -1,1 +1,6 @@
 html_validator/
+env_test
+dev_test
+setup_mysql_dev.sql
+setup_mysql_test.sql
+secret_key
