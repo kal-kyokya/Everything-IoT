@@ -5,8 +5,9 @@
 # Import the necessary modules and/or tools
 from flask import (
     Blueprint, flash, render_template,
-    redirect, request, url_for)
-from flask_login import login_user, login_required, logout_user, current_user
+    redirect, request, url_for
+)
+from flask_login import login_user, login_required, logout_user
 from models.user import User
 from models.dashboard import Dashboard
 from models.microcontroller import Microcontroller
@@ -131,4 +132,4 @@ def logout():
     # End session
     logout_user()
     # Redirect to the 'logged out' page
-    return redirect(url_for('home.home'))
+    return render_template('logged_out.html')
