@@ -1,0 +1,14 @@
+Run:
+	export PYTHONPATH=$PWD
+	python web_flask/app.py
+
+Alternatively, run it inline:
+	PYTHONPATH=$PWD python web_flask/app.py
+
+/**
+ * This tells Python to
+ * look for modules
+ * in the current directory
+ * (Everything-Iot),
+ * where models is located.
+ */
